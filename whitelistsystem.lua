@@ -1,16 +1,14 @@
--- setclipboard(syn.crypt.hash(game:GetService("RbxAnalyticsService"):GetClientId(), data)) (commented code for how to get a user's hwid)
 local hwid = syn.crypt.hash(game:GetService("RbxAnalyticsService"):GetClientId(), data)
-print(hwid)
+setclipboard(hwid)
 local userid = syn.crypt.hash(game.Players.LocalPlayer.UserId, data)
-local whitelisted = {""} -- put every whitelisted hwid here
+local whitelisted = {"any whitelisted hwid"} -- put every whitelisted hwid here
 
 for i, v in pairs(whitelisted) do
     if v == hwid then
-        writefile("whiteliststatus.txt",
-            syn.crypt.hash("current status of the user: not whitelisted! this file has been hashed."))
-    else
         writefile("whiteliststatus.txt", syn.crypt.hash(
             "the current status of the user: whitelisted! whitelist security code: add a security code here so unwhitelisted ppl cant just hash this"))
+    else
+        writefile("whiteliststatus.txt", syn.crypt.hash("not whitelisted lol", data))
     end
 end
 for i, v in pairs(whitelisted) do
